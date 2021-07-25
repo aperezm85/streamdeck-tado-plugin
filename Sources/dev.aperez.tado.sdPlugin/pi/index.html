@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dev.aperez.tado.pi</title>
+    <link rel="stylesheet" type="text/css" href="css/sdpi.css" />
+    <link rel="stylesheet" type="text/css" href="css/pi.css" />
+
+    <!-- Import scripts -->
+    <script src="../plugin/js/utils.js"></script>
+    <script src="../plugin/js/Tado.js"></script>
+    <script src="js/tooltips.js"></script>
+    <script src="js/powerPi.js"></script>
+    <script src="js/statusPi.js"></script>
+    <script src="js/pi.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <!-- Property Inspector -->
+    <div class="sdpi-wrapper" id="pi">
+      <!-- Config select -->
+      <div class="sdpi-item">
+        <div class="sdpi-item-label" id="config-label"></div>
+        <select class="sdpi-item-value select" id="config-select">
+          <option id="no-configs" value="no-configs"></option>
+          <option disabled></option>
+          <option id="add-config" value="add"></option>
+        </select>
+      </div>
+      <!-- Room select -->
+      <div class="sdpi-item">
+        <div class="sdpi-item-label" id="room-label"></div>
+        <select class="sdpi-item-value select" id="room-select">
+          <option id="no-rooms" value="no-room"></option>
+        </select>
+      </div>
+
+      <!-- Placeholder for more UI elements -->
+      <div id="placeholder"></div>
+    </div>
+    <!-- Floating tooltips element -->
+    <div class="sdpi-info-label hidden" style="top: -1000px" value=""></div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "Name": "Tado",
+  "Category": "Tado",
+  "Description": "Controle su calefacción Tado.",
+  "dev.aperez.tado.power": {
+    "Name": "On / Off",
+    "Tooltip": "Encender o apagar la calefacción.",
+    "States": [
+      {
+        "Name": "On"
+      },
+      {
+        "Name": "Off"
+      }
+    ]
+  },
+  "Localization": {
+    "PI": {
+      "Config": "Configuración",
+      "NoConfigs": "No hay Configuraciones",
+      "AddConfig": "Añadir Configuración",
+      "Room": "Habitación",
+      "NoRooms": "No hay Habitaciones",
+      "Temperature": "Temperatura en grados Celsius (a la que se encendera la calefacción)"
+    },
+    "Setup": {
+      "Intro": {
+        "Title": "Introduce tu usuario y contraseña de Tado",
+        "Description": "Esto es necesario para comunicarnos con tu sistema Tado",
+        "Name": "Nombre",
+        "NamePlaceholder": "Nombre para guardar la configuración",
+        "Email": "Email",
+        "EmailPlaceholder": "Email de tu cuenta de Tado",
+        "Password": "Contraseña",
+        "PasswordPlaceholder": "Tu contraseña de Tado",
+        "Save": "Guardar",
+        "Close": "Ahora no"
+      }
+    }
+  }
+}

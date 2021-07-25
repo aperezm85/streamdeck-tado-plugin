@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1"
+    />
+    <meta charset="UTF-8" />
+    <!-- Import style sheets -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <title>dev.aperez.tado.setup</title>
+    <script src="../plugin/js/Tado.js"></script>
+    <script src="../plugin/js/utils.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body oncontextmenu="return false;">
+    <!-- Center view horizontally -->
+    <div class="main">
+      <!-- Center view vertically -->
+      <div class="center">
+        <!-- Add a border around the view on big screens -->
+        <div class="border">
+          <!-- General header element -->
+          <div class="header">
+            <h2>Tado</h2>
+            <h1 id="title"></h1>
+          </div>
+          <!-- Main view element -->
+          <div id="content"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

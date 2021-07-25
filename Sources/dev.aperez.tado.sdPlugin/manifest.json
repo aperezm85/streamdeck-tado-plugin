@@ -1,0 +1,59 @@
+{
+  "Actions": [
+    {
+      "Icon": "plugin/images/power",
+      "Name": "On / Off",
+      "States": [
+        {
+          "Image": "plugin/images/icons/on",
+          "Name": "On"
+        },
+        {
+          "Image": "plugin/images/icons/off",
+          "Name": "Off"
+        }
+      ],
+      "Tooltip": "Turn heating on or off.",
+      "UUID": "dev.aperez.tado.power"
+    },
+    {
+      "Icon": "plugin/images/status",
+      "Name": "Current Temperature",
+      "States": [
+        {
+          "Image": "plugin/images/icons/status",
+          "TitleAlignment": "bottom",
+          "FontSize": "14",
+          "TitleColor": "#C80000"
+        }
+      ],
+      "Tooltip": "Check the current temperature of the room",
+      "UUID": "dev.aperez.tado.status"
+    }
+  ],
+  "Category": "Tado",
+  "CategoryIcon": "plugin/images/category/category",
+  "SDKVersion": 2,
+  "Author": "Alex Perez",
+  "CodePath": "plugin/index.html",
+  "Description": "Control your tado heating.",
+  "Name": "Tado",
+  "Icon": "plugin/images/plugin/plugin",
+  "PropertyInspectorPath": "pi/index.html",
+  "URL": "https://www.elgato.com/gaming/stream-deck",
+  "Version": "1.0",
+  "DefaultWindowSize": [500, 650],
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "4.2"
+  }
+}

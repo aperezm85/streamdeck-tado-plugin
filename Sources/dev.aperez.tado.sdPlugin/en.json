@@ -1,0 +1,41 @@
+{
+  "Name": "Tado",
+  "Category": "Tado",
+  "Description": "Control your Tado heating.",
+  "dev.aperez.tado.power": {
+    "Name": "On / Off",
+    "Tooltip": "Turn heating on or off.",
+    "States": [
+      {
+        "Name": "On"
+      },
+      {
+        "Name": "Off"
+      }
+    ]
+  },
+  "Localization": {
+    "PI": {
+      "Config": "Configuration",
+      "NoConfigs": "No Configurations",
+      "AddConfig": "Add New",
+      "Room": "Room",
+      "NoRooms": "No Rooms",
+      "Temperature": "Temperature in degrees Celsius (at which heating is turned on)"
+    },
+    "Setup": {
+      "Intro": {
+        "Title": "Introduce your Tado credentials",
+        "Description": "This will help us to send the commands to your heating system",
+        "Name": "Name",
+        "NamePlaceholder": "A name to save the configuration",
+        "Email": "Email",
+        "EmailPlaceholder": "Your Tado email",
+        "Password": "Password",
+        "PasswordPlaceholder": "Your Tado password",
+        "Save": "Save",
+        "Close": "Not now"
+      }
+    }
+  }
+}

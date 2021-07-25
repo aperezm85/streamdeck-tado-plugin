@@ -1,0 +1,12 @@
+#pi {
+  /* display: none; */
+}
+
+#placeholder {
+  margin-top: 3px;
+}
+
+select option:disabled {
+  font-size: 1pt;
+  background-color: rgb(80, 80, 80);
+}
