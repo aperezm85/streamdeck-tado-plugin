@@ -39,7 +39,7 @@ const loadView = () => {
   document.getElementById("content").innerHTML = content;
 
   const form = document.getElementById("setupForm");
-  debugger;
+
   if (form.attachEvent) {
     form.attachEvent("submit", processForm);
   } else {
@@ -51,7 +51,6 @@ const showError = (errorMessage) => {
   document.getElementsByClassName("error")[0].innerText = errorMessage;
 };
 const processForm = (e) => {
-  debugger;
   if (e.preventDefault) e.preventDefault();
   /* do what you want with the form */
   const name = document.getElementById("name").value;
