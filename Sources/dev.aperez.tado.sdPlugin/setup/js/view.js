@@ -28,7 +28,7 @@ const loadView = () => {
   />
   </div>
   <div>
-  <input type="submit" value="${localization["Intro"]["Save"]}" />
+  <input type="submit" class='button' value="${localization["Intro"]["Save"]}" />
   </div>
   </form>`;
 
