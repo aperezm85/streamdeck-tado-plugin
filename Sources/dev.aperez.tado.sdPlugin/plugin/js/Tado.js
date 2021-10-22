@@ -10,17 +10,24 @@ function Tado(username = null, password = null) {
 
   function getAccessToken(callback) {
     if (username && password) {
-      var url = `https://auth.tado.com/oauth/token?client_id=tado-web-app&client_secret=wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc&grant_type=password&password=${password}&scope=home.user&username=${username}`;
-      var xhr = new XMLHttpRequest();
+      const data = new FormData();
+      data.append("client_id", "tado-web-app");
+      data.append(
+        "client_secret",
+        "wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc"
+      );
+      data.append("grant_type", "password");
+      data.append("password", password);
+      data.append("scope", "home.user");
+      data.append("username", username);
+
+      const xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
-      xhr.responseType = "json";
-      xhr.timeout = 2500;
-      xhr.open("POST", url);
+
       xhr.onload = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
           if (xhr.response !== undefined && xhr.response != null) {
-            var result = xhr.response;
-
+            var result = JSON.parse(xhr.response);
             if ("access_token" in result) {
               callback(true, result.access_token);
             } else {
@@ -42,9 +49,11 @@ function Tado(username = null, password = null) {
       xhr.ontimeout = function () {
         callback(false, "Connection to tado timed out.");
       };
-    }
 
-    xhr.send();
+      xhr.open("POST", "https://auth.tado.com/oauth/token");
+
+      xhr.send(data);
+    }
   }
 
   function getHomeId(access_token, callback) {

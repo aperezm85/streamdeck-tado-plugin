@@ -41,7 +41,7 @@
   "Icon": "plugin/images/plugin/plugin",
   "PropertyInspectorPath": "pi/index.html",
   "URL": "https://www.elgato.com/gaming/stream-deck",
-  "Version": "1.0",
+  "Version": "1.1",
   "DefaultWindowSize": [500, 650],
   "OS": [
     {
