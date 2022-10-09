@@ -143,7 +143,13 @@ function Tado(username = null, password = null) {
     });
   };
 
-  this.setPower = function (targetState, room, temperature = 22, callback) {
+  this.setPower = function (
+    targetState,
+    room,
+    temperature = 22,
+    units,
+    callback
+  ) {
     getAccessToken(function (isValid, access_token) {
       if (!isValid || !access_token) return callback(false, null);
       getHomeId(access_token, function (isValid, homeId) {
@@ -156,12 +162,16 @@ function Tado(username = null, password = null) {
             setting: { type: "HEATING", power: "OFF" },
           });
         } else {
+          var temp = { celsius: temperature };
+          if (units === "fahrenheit") {
+            temp = { fahrenheit: temperature };
+          }
           data = JSON.stringify({
             termination: { typeSkillBasedApp: "MANUAL" },
             setting: {
               type: "HEATING",
               power: "ON",
-              temperature: { celsius: temperature },
+              temperature: temp,
             },
           });
         }
@@ -215,7 +225,6 @@ function Tado(username = null, password = null) {
           if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             if (xhr.response !== undefined && xhr.response != null) {
               var result = xhr.response;
-
               callback(true, result);
             } else {
               callback(false, "Tado response is undefined or null.");

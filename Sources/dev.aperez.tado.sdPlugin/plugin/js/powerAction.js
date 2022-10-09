@@ -8,13 +8,58 @@ function PowerAction(inContext, inSettings) {
 
   // Update the state
   updateState();
+  // Update the state
+  getStatus();
+
+  // Public function called on key up event
+  this.onWillAppear = function (inContext, inSettings) {
+
+    // Check if any room is configured
+    if (!("config" in inSettings)) {
+      log("No config configured");
+      showAlert(inContext);
+      return;
+    }
+
+    // Check if the configured room is in the cache
+    if (!(inSettings.config in cache.data)) {
+      log("Config " + inSettings.config + " not found in cache");
+      showAlert(inContext);
+      return;
+    }
+
+    // Find the configured settings
+    var configCache = cache.data[inSettings.config];
+
+    // Check if any room is configured
+    if (!("room" in inSettings)) {
+      log("No room configured");
+      showAlert(inContext);
+      return;
+    }
+
+    // Create a room instance
+    var tado = new Tado(configCache.email, configCache.password);
+    // Set Room status
+    tado.checkStatusRoom(inSettings.room, function (success, result) {
+      if (success) {
+        var temperatureText = result.celsius.toFixed(1) + "°C";
+        if (settings.units === 'fahrenheit') {
+          temperatureText = result.fahrenheit.toFixed(1) + "°F";
+        }
+        setTitle(inContext, temperatureText);
+      } else {
+        log(result);
+        setTitle(inContext, "-");
+        showAlert(inContext);
+      }
+    });
+  };
 
   // Public function called on key up event
   this.onKeyUp = function (
     inContext,
     inSettings,
-    inCoordinates,
-    inUserDesiredState,
     inState
   ) {
     // Check if any room is configured
@@ -55,6 +100,7 @@ function PowerAction(inContext, inSettings) {
       targetState,
       inSettings.room,
       inSettings.temperature,
+      inSettings.units,
       function (success, error) {
         if (success) {
           setActionState(inContext, targetState ? 0 : 1);
@@ -67,6 +113,11 @@ function PowerAction(inContext, inSettings) {
     );
   };
 
+  this.refreshStatus = function (inContext, inSettings) {
+    getStatus();
+  }
+
+
   // Before overwriting parent method, save a copy of it
   var actionNewCacheAvailable = this.newCacheAvailable;
 
@@ -76,7 +127,7 @@ function PowerAction(inContext, inSettings) {
     actionNewCacheAvailable.call(instance, function () {
       // Update the state
       updateState();
-
+      getStatus();
       // Call the callback function
       inCallback();
     });
@@ -98,13 +149,12 @@ function PowerAction(inContext, inSettings) {
 
     // Find the configured bridge
     var configCache = cache.data[settings.config];
-
-    // Check if a light was set for this action
+    // Check if a room was set for this action
     if (!("room" in settings)) {
       return;
     }
 
-    // Find out if it is a light or a group
+    // Find out if it is a room or a group
     var objCache;
     if (settings.room) {
       objCache = configCache.zones.find(
@@ -114,7 +164,6 @@ function PowerAction(inContext, inSettings) {
 
     // Set the target state
     var targetState = objCache.power;
-
     // Set the new action state
     setActionState(context, targetState ? 0 : 1);
   }
@@ -122,5 +171,39 @@ function PowerAction(inContext, inSettings) {
   // Private function to set the state
   function setActionState(inContext, inState) {
     setState(inContext, inState);
+  }
+
+  function getStatus() {
+    // Get the settings and the context
+    var settings = instance.getSettings();
+    var context = instance.getContext();
+
+    // Check if any bridge is configured
+    if (!("config" in settings)) {
+      return;
+    }
+
+    // Check if the configured bridge is in the cache
+    if (!(settings.config in cache.data)) {
+      return;
+    }
+    // Find the configured bridge
+    var configCache = cache.data[settings.config];
+    // Create a room instance
+    var tado = new Tado(configCache.email, configCache.password);
+    // Get Room status
+    tado.checkStatusRoom(settings.room, function (success, result) {
+      if (success) {
+        var temperatureText = result.celsius.toFixed(1) + "°C";
+        if (settings.units === 'fahrenheit') {
+          temperatureText = result.fahrenheit.toFixed(1) + "°F";
+        }
+        setTitle(context, temperatureText);
+      } else {
+        log(result);
+        setTitle(context, "-");
+        showAlert(context);
+      }
+    });
   }
 }
