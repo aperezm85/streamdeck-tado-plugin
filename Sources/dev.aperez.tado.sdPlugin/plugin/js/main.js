@@ -12,7 +12,6 @@ function connectElgatoStreamDeckSocket(
   inPort,
   inPluginUUID,
   inRegisterEvent,
-  inInfo
 ) {
   // Create array of currently used actions
   var actions = {};
@@ -137,6 +136,12 @@ function connectElgatoStreamDeckSocket(
         actions[context].setSettings(settings);
       }
 
+      if (action === "dev.aperez.tado.power") {
+        if (context in actions) {
+          actions[context].refreshStatus(context);
+        }
+      }
+
       // Refresh the cache
       cache.refresh();
     } else if (event === "propertyInspectorDidAppear") {
@@ -144,15 +149,12 @@ function connectElgatoStreamDeckSocket(
       sendToPropertyInspector(action, context, cache.data);
     } else if (event === "sendToPlugin") {
       var piEvent = jsonPayload["piEvent"];
-
       // if (piEvent === 'valueChanged') {
-      //     // Only color, brightness and scene support live preview
-      //     if(action !== 'com.elgato.philips-hue.power' && action !== 'com.elgato.philips-hue.cycle') {
-      //         // Send manual onKeyUp event to action
-      //         if (context in actions) {
-      //             actions[context].onKeyUp(context);
-      //         }
+      //   if (action === "dev.aperez.tado.power") {
+      //     if (context in actions) {
+      //       actions[context].onWillAppear(context);
       //     }
+      //   }
       // }
     }
   };

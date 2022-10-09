@@ -37,7 +37,7 @@ function StatusAction(inContext, inSettings) {
 
     // Create a room instance
     var tado = new Tado(configCache.email, configCache.password);
-    // Het Room status
+    // Set Room status
     tado.checkStatusRoom(inSettings.room, function (success, result) {
       if (success) {
         setTitle(inContext, result.celsius + "°C");

@@ -49,6 +49,11 @@ function PI(inContext, inLanguage, inStreamDeckVersion, inPluginVersion) {
 
     document.getElementById("temperature-label").innerHTML =
       instance.localization["Temperature"];
+
+    document.getElementById("units-label").innerHTML =
+      instance.localization["Units"];
+    document.getElementById("message-label").innerHTML =
+      instance.localization["Message"];
   };
 
   // show all loaded configurations
@@ -165,6 +170,7 @@ function PI(inContext, inLanguage, inStreamDeckVersion, inPluginVersion) {
     if (instance instanceof PowerPI) {
       //Load the temperature
       instance.loadTemp();
+      instance.loadUnit();
     }
   }
 
@@ -186,6 +192,7 @@ function PI(inContext, inLanguage, inStreamDeckVersion, inPluginVersion) {
       password: inEvent.detail.password,
       zones: inEvent.detail.zones,
       temperature: inEvent.detail.temperature,
+      units: inEvent.detail.units,
     };
     saveGlobalSettings(inContext);
   }
@@ -196,11 +203,11 @@ function PI(inContext, inLanguage, inStreamDeckVersion, inPluginVersion) {
       // Open setup window
       window.open(
         "../setup/index.html?language=" +
-          inLanguage +
-          "&streamDeckVersion=" +
-          inStreamDeckVersion +
-          "&pluginVersion=" +
-          inPluginVersion
+        inLanguage +
+        "&streamDeckVersion=" +
+        inStreamDeckVersion +
+        "&pluginVersion=" +
+        inPluginVersion
       );
 
       // Select the first in case user cancels the setup

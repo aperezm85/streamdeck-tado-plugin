@@ -21,7 +21,9 @@
       "AddConfig": "Añadir Configuración",
       "Room": "Habitación",
       "NoRooms": "No hay Habitaciones",
-      "Temperature": "Temperatura en grados Celsius (a la que se encendera la calefacción)"
+      "Temperature": "Temperatura",
+      "Units": "Elige la unidad de medida",
+      "Message": "Temperatura seleccionada"
     },
     "Setup": {
       "Intro": {

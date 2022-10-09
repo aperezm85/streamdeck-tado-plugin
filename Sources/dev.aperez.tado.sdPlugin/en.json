@@ -21,7 +21,9 @@
       "AddConfig": "Add New",
       "Room": "Room",
       "NoRooms": "No Rooms",
-      "Temperature": "Temperature in degrees Celsius (at which heating is turned on)"
+      "Temperature": "Temperature",
+      "Units": "Choose units",
+      "Message": "Temperature selected"
     },
     "Setup": {
       "Intro": {
