@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tado connection tester</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+
+  <style>
+    html,
+    body {
+      margin: 60px auto;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #3d3d3d;
+      color: #fff;
+    }
+
+    .errorMessage {
+      margin-top: 20px;
+    }
+
+    code {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form class="needs-validation" novalidate>
+      <div class="form">
+        <div class="form-group">
+          <label for="email">Email: </label>
+          <input class="form-control" type="email" id="email" required />
+          <div class="invalid-feedback">Please enter a valid email</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password: </label>
+          <input class="form-control" type="password" id="password" required />
+          <div class="invalid-feedback">Please enter your password.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+
+    <div class="errorMessage">
+      <code>
+          <div id="isValid" class="isValid"></div>
+        </code>
+      <code>
+          <div id="message" class="message"></div>
+        </code>
+    </div>
+  </div>
+
+  <script src="Sources/dev.aperez.tado.sdPlugin/plugin/js/Tado.js"></script>
+  <script type="text/javascript">
+    (function () {
+      "use strict";
+      window.addEventListener(
+        "load",
+        function () {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName("needs-validation");
+          var email = document.getElementById("email");
+          var password = document.getElementById("password");
+          var isValid = document.getElementById("isValid");
+          var message = document.getElementById("message");
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(
+            forms,
+            function (form) {
+              form.addEventListener(
+                "submit",
+                function (event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add("was-validated");
+                  if (form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const tado = new Tado(email.value, password.value);
+                    tado.testAccess(function (isValidValue, messageValue) {
+                      isValid.textContent = `The connection was success? ${isValidValue}`;
+                      message.textContent = !isValidValue ? messageValue : "";
+                    });
+                  }
+                },
+                false
+              );
+            }
+          );
+        },
+        false
+      );
+    })();
+  </script>
+</body>
+
+</html>

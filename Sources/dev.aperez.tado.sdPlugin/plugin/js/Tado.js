@@ -8,6 +8,56 @@ function Tado(username = null, password = null) {
     return password;
   };
 
+
+  this.testAccess = function (callback) {
+    if (username && password) {
+      const data = new FormData();
+      data.append("client_id", "tado-web-app");
+      data.append(
+        "client_secret",
+        "wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc"
+      );
+      data.append("grant_type", "password");
+      data.append("password", password);
+      data.append("scope", "home.user");
+      data.append("username", username);
+
+      const xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.onload = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          if (xhr.response !== undefined && xhr.response != null) {
+            var result = JSON.parse(xhr.response);
+            if ("access_token" in result) {
+              callback(true, '');
+            } else {
+              var message = result["error"]["description"];
+              callback(false, message);
+            }
+          } else {
+            callback(false, "Tado response is undefined or null.");
+          }
+        } else {
+          callback(false, `Could not connect to tado. ${xhr.response}`);
+        }
+      };
+
+      xhr.onerror = function () {
+        callback(false, "Unable to connect to tado.");
+      };
+
+      xhr.ontimeout = function () {
+        callback(false, "Connection to tado timed out.");
+      };
+
+      xhr.open("POST", "https://auth.tado.com/oauth/token");
+
+      xhr.send(data);
+    }
+  }
+
+
   function getAccessToken(callback) {
     if (username && password) {
       const data = new FormData();
