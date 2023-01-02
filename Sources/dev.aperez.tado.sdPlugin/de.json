@@ -1,0 +1,43 @@
+{
+  "Name": "Tado",
+  "Category": "Tado",
+  "Description": "Steuern Sie Ihre Tado Heizung.",
+  "dev.aperez.tado.power": {
+    "Name": "Ein / Aus",
+    "Tooltip": "Heizung ein- oder ausschalten.",
+    "States": [
+      {
+        "Name": "Ein"
+      },
+      {
+        "Name": "Aus"
+      }
+    ]
+  },
+  "Localization": {
+    "PI": {
+      "Config": "Konfiguration",
+      "NoConfigs": "Keine Konfigurationen",
+      "AddConfig": "Neu hinzufügen",
+      "Room": "Zimmer",
+      "NoRooms": "Keine Zimmer",
+      "Temperature": "Temperatur",
+      "Units": "Einheiten wählen",
+      "Message": "Temperatur ausgewählt"
+    },
+    "Setup": {
+      "Intro": {
+        "Title": "Stellen Sie Ihre Tado-Anmeldeinformationen vor",
+        "Description": "Dies hilft uns, die Befehle an Ihre Heizungsanlage zu senden",
+        "Name": "Name",
+        "NamePlaceholder": "Ein Name zum Speichern der Konfiguration",
+        "Email": "Email",
+        "EmailPlaceholder": "Ihre Tado-E-Mail",
+        "Password": "Passwort",
+        "PasswordPlaceholder": "Ihr Tado-Passwort",
+        "Save": "Speichern",
+        "Close": "Jetzt nicht"
+      }
+    }
+  }
+}
