@@ -32,17 +32,19 @@
 
 <body>
   <div class="container">
+    <h2>Tado test connection</h2>
+    <p>Please introduce your credentials to see the Tado Api response to check if your credentials are right.</p>
     <form class="needs-validation" novalidate>
       <div class="form">
         <div class="form-group">
           <label for="email">Email: </label>
-          <input class="form-control" type="email" id="email" required />
+          <input class="form-control" type="email" id="email" required placeholder="Introduce your email" />
           <div class="invalid-feedback">Please enter a valid email</div>
         </div>
 
         <div class="form-group">
           <label for="password">Password: </label>
-          <input class="form-control" type="password" id="password" required />
+          <input class="form-control" type="password" id="password" required placeholder="Introduce your password" />
           <div class="invalid-feedback">Please enter your password.</div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
